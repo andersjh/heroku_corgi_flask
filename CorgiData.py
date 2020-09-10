@@ -32,49 +32,7 @@ class CorgiData():
             print(f"table '{table}' has the following columns:")
             print('-' * 12)
             for column in self.inspector.get_columns(table):
-                print(f"name: {column['name']}   column type: {column['type']}")
-
-
-    
-    # idea base from: https://riptutorial.com/sqlalchemy/example/6614/converting-a-query-result-to-dict
-    def object_as_dict(self, obj):
-        """
-        This function takes in a Class instance and converts it to a dictionary
-        """
-        obj_count = 1
-        try:
-            obj_count = len(obj)
-        except:
-            pass
-        if  obj_count == 1:
-            base_dict = {c.key: getattr(obj, c.key)
-                for c in inspect(obj).mapper.column_attrs}
-            return base_dict
-        else:
-            cur_obj = obj[0]
-            base_dict = {c.key: getattr(cur_obj, c.key) for c in inspect(cur_obj).mapper.column_attrs}
-            for i in range(1, obj_count):
-                cur_obj = obj[i]
-                cur_dict = {c.key: getattr(cur_obj, c.key) for c in inspect(cur_obj).mapper.column_attrs}
-                base_dict = {**base_dict, **cur_dict} 
-            return base_dict                 
-
-    # From Jeff LOL
-    def query_to_list_of_dicts(self, cur_query):
-        """
-        From a query object return a list of dictionaries
-        """
-        return [self.object_as_dict(row) for row in cur_query]
-
-    # list of tuples converted to list of dictionaries
-    def list_tuple_to_list_dict(self, cols, rows):
-        """
-        Take a list of tuples and return a list of dicts
-        """
-        dict_rows = []
-        for row in rows:
-            dict_rows.append({ cols[i]: row[i] for i in range(len(cols))})
-        return dict_rows    
+                print(f"name: {column['name']}   column type: {column['type']}") 
 
     
     
