@@ -2,7 +2,7 @@
 # from CorgiData import CorgiData
 from CorgiData import CorgiData
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 #################################################
 # Database Setup
@@ -20,6 +20,11 @@ app = Flask(__name__)
 #################################################
 
 @app.route("/")
+def main_page():
+    pets = cg.get_pet_data()
+    return render_template("index.html", corgis=pets)
+
+@app.route("/api/v1.0")
 def show_apis():
     """List all available api routes."""
     return (
@@ -30,6 +35,7 @@ def show_apis():
         f'<a href="/api/v1.0/pet_training/Judson">/api/v1.0/pet_training/(name)</a><br/>' 
         f'<a href="/"><h4>Back</h4></a><br/>' 
     )      
+
 
 @app.route("/api/v1.0/pets")
 def get_all_pets():

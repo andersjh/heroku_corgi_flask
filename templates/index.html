@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Corgie Training App</title>
+    <!-- styles -->
+  </head>
+ 
+  <body>
+    <h1>Welcome to the Corgi Training Summary App!</h1>
+    This site describes how are corgis are doing with their training!
+
+    <h2>Corgies</h2>
+    <table style="width:100%">
+      <tr>
+        <th>Name</th>
+        <th>Current Age</th>
+        <th>When Adopted</th>
+      </tr>
+      {% for corgi in corgis %}
+      <tr>
+        <td>{{ corgi.name }}</td>
+        <td>{{ corgi.age }}</td>
+        <td>{{ corgi.age_adopted }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <br>
+    <p><a href="/api/v1.0">Available APIs</a></p>
+  </body>
+</html>
